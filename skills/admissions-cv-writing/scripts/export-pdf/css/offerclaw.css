@@ -5,47 +5,52 @@
 /* ===== Font faces ===== */
 
 @font-face {
-    font-family: "SourceHanSansCN";
-    src: url('{{FONTS_DIR}}/SourceHanSansCN-Regular.ttf');
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_REGULAR_SRC}};
 }
 
 @font-face {
-    font-family: "SourceHanSansCN";
-    src: url('{{FONTS_DIR}}/SourceHanSansCN-Bold.ttf');
-    font-weight: bold;
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_BOLD_SRC}};
+    font-weight: 700;
 }
 
 @font-face {
-    font-family: "SourceHanSansCN";
-    src: url('{{FONTS_DIR}}/SourceHanSansCN-Regular.ttf');
+    font-family: "OfferClaw Sans";
+    src:
+        {{FONT_SANS_ITALIC_SRC}};
     font-style: italic;
 }
 
 @font-face {
-    font-family: "SourceHanSerifCN";
-    src: url('{{FONTS_DIR}}/SourceHanSerifCN-Bold.ttf');
-    font-weight: bold;
+    font-family: "OfferClaw Serif";
+    src:
+        {{FONT_SERIF_BOLD_SRC}};
+    font-weight: 700;
 }
 
 @font-face {
-    font-family: "JetBrainsMono";
-    src: url('{{FONTS_DIR}}/JetBrainsMono-Regular.ttf');
+    font-family: "OfferClaw Mono";
+    src:
+        {{FONT_MONO_REGULAR_SRC}};
 }
 
 /* ===== Text ===== */
 
 a,
 a span {
-    font-family: 'JetBrainsMono';
+    font-family: {{FONT_MONO_STACK}};
 }
 
 code {
-    font-family: 'JetBrainsMono';
+    font-family: {{FONT_MONO_STACK}};
 }
 
 p,
 .bullet-item {
-    font-family: 'SourceHanSansCN';
+    font-family: {{FONT_SANS_STACK}};
     font-size: 9.5pt;
     line-height: 1.8;
     color: #000000;
@@ -57,7 +62,7 @@ h1,
 h2,
 h3 {
     font-weight: 700;
-    font-family: 'SourceHanSerifCN';
+    font-family: {{FONT_SERIF_STACK}};
 }
 
 h1 {

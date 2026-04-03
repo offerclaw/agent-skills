@@ -12,7 +12,7 @@ def build_overlay() -> tuple[str, str]:
         right: 0;
         bottom: 0;
         text-align: center;
-        font-family: 'SourceHanSansCN';
+        font-family: {{FONT_SANS_STACK}};
         font-size: 8pt;
         color: #b7b7b7;
         z-index: 10;

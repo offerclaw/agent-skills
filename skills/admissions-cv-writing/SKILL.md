@@ -93,10 +93,13 @@ After user confirmation, ask whether the user wants a PDF. If yes:
    ```bash
    bash scripts/export-pdf/run.sh <input.md> <output.pdf>
    ```
+   - Default font mode is `auto`: prefer bundled fonts when the platform allows packaged font files, otherwise fall back to similar local system fonts.
+   - If the platform forbids packaged font files, use `--font-source local-only` to force local-font rendering.
+   - If bundled fonts are required for brand consistency, use `--font-source bundled-only` so the export fails fast when font assets are unavailable.
 
 All script paths are relative to the `admissions-cv-writing/` skill directory.
 
-**Prerequisites:** PDF export requires Python 3 and an internet connection (for first-time dependency installation). The setup script creates an isolated venv and installs `weasyprint` and `markdown` automatically. No global packages are modified.
+**Prerequisites:** PDF export requires Python 3 and an internet connection (for first-time dependency installation). The setup script creates an isolated venv and installs `weasyprint` and `markdown` automatically. No global packages are modified. If bundled fonts are unavailable, PDF export still works by falling back to locally installed fonts with a similar style, but line breaks and spacing may vary slightly across platforms.
 
 ## Output Format
 

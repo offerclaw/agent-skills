@@ -23,7 +23,7 @@ Writes graduate admissions CVs or resumes tailored for specific programs and exp
 
 - Program-specific CV tailoring
 - Academic and research experience formatting
-- Markdown-to-PDF export
+- Markdown-to-PDF export with bundled-font and local-font fallback modes
 - Publication and project listing
 
 ### recommendation-letter-writing

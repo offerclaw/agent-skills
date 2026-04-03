@@ -23,7 +23,7 @@
 
 - 按项目方向定制 CV 内容
 - 支持学术、科研、实习经历编排
-- 支持 Markdown 转 PDF
+- 支持 Markdown 转 PDF，并可在受限平台回退到本地字体
 - 支持论文、项目、奖项信息组织
 
 ### recommendation-letter-writing

@@ -19,6 +19,11 @@ This directory only contains the PDF export helper used by `admissions-cv-writin
   bash scripts/export-pdf/run.sh <input.md> <output.pdf>
   ```
   The venv is created automatically on first run. No manual setup needed.
+- Font loading defaults to `--font-source auto`: use packaged fonts when available, otherwise fall back to similar local fonts.
+- Optional font-source modes:
+  - `--font-source auto`: prefer packaged fonts, then local fonts.
+  - `--font-source local-only`: never read packaged font files; useful on platforms that forbid shipping fonts.
+  - `--font-source bundled-only`: require packaged font files and fail fast if they are missing.
 
 ## Watermark Toggle
 

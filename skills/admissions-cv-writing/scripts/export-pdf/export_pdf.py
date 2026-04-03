@@ -2,7 +2,6 @@
 """Export a Markdown CV to PDF using WeasyPrint."""
 
 import argparse
-import importlib.util
 import re
 import sys
 from pathlib import Path
@@ -15,9 +14,9 @@ from weasyprint.text.fonts import FontConfiguration
 SCRIPT_DIR = Path(__file__).resolve().parent
 FONTS_DIR = (SCRIPT_DIR / "../../assets/fonts").resolve()
 CSS_FILE = SCRIPT_DIR / "css/offerclaw.css"
-WATERMARK_OVERLAY_FILE = SCRIPT_DIR / "watermark_overlay.py"
 
 FONT_SOURCE_CHOICES = ("auto", "local-only", "bundled-only")
+WATERMARK_CHOICES = ("on", "off")
 
 FONT_FACE_SOURCES = {
     "FONT_SANS_REGULAR_SRC": {
@@ -128,6 +127,23 @@ HTML_TEMPLATE = """\
 </html>
 """
 
+OVERLAY_CSS_TEMPLATE = """
+.pdf-watermark-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-family: {{FONT_SANS_STACK}};
+    font-size: 8pt;
+    color: #b7b7b7;
+    z-index: 10;
+    pointer-events: none;
+}
+"""
+
+OVERLAY_HTML = '<div class="pdf-watermark-footer">Powered by OfferClaw</div>'
+
 
 def render_template(text: str, template_values: dict[str, str]) -> str:
     rendered = text
@@ -214,36 +230,22 @@ def md_to_html(md_path: Path) -> str:
     return replace_ul_with_divs(html)
 
 
-def build_overlay(template_values: dict[str, str]) -> tuple[str, str]:
-    if not WATERMARK_OVERLAY_FILE.exists():
+def build_overlay(
+    template_values: dict[str, str], watermark_mode: str
+) -> tuple[str, str]:
+    if watermark_mode == "off":
         return "", ""
 
-    spec = importlib.util.spec_from_file_location("watermark_overlay", WATERMARK_OVERLAY_FILE)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"Unable to load overlay module: {WATERMARK_OVERLAY_FILE}")
-
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-
-    build_fn = getattr(module, "build_overlay", None)
-    if not callable(build_fn):
-        raise RuntimeError(
-            f"Overlay module must define callable build_overlay(): {WATERMARK_OVERLAY_FILE}"
-        )
-
-    overlay_css, overlay_html = build_fn()
-    if not isinstance(overlay_css, str) or not isinstance(overlay_html, str):
-        raise RuntimeError(
-            f"build_overlay() must return tuple[str, str]: {WATERMARK_OVERLAY_FILE}"
-        )
-    return render_template(overlay_css, template_values), overlay_html
+    return render_template(OVERLAY_CSS_TEMPLATE, template_values), OVERLAY_HTML
 
 
-def export(input_md: Path, output_pdf: Path, font_source_mode: str) -> None:
+def export(
+    input_md: Path, output_pdf: Path, font_source_mode: str, watermark_mode: str
+) -> None:
     body_html = md_to_html(input_md)
     template_values = build_font_template_values(font_source_mode)
     cv_css = build_css(template_values)
-    overlay_css, overlay_html = build_overlay(template_values)
+    overlay_css, overlay_html = build_overlay(template_values, watermark_mode)
     full_html = HTML_TEMPLATE.format(
         page_css=PAGE_CSS,
         cv_css=cv_css,
@@ -273,13 +275,19 @@ def main() -> None:
             "local-only never uses bundled font files, bundled-only requires bundled font files."
         ),
     )
+    parser.add_argument(
+        "--watermark",
+        choices=WATERMARK_CHOICES,
+        default="on",
+        help="Watermark mode: on includes the OfferClaw footer, off omits it.",
+    )
     args = parser.parse_args()
 
     if not args.input_md.exists():
         print(f"Error: {args.input_md} not found", file=sys.stderr)
         sys.exit(1)
 
-    export(args.input_md, args.output_pdf, args.font_source)
+    export(args.input_md, args.output_pdf, args.font_source, args.watermark)
 
 
 if __name__ == "__main__":

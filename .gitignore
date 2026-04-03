@@ -1,0 +1,30 @@
+**/.venv/
+**/venv/
+**/__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Lock files
+package-lock.json
+
+# IDE and editor configs
+.vscode/
+.cursor/
+.idea/
+
+# AI coding agent configs
+.agent/
+.agents/
+.claude/
+
+# Node
+node_modules/
+
+# Build artifacts
+dist/
+*.zip

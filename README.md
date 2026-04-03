@@ -55,6 +55,8 @@ If you are an admissions consultant, studio, or agency and want more than a stan
 
 ## Installation
 
+### Install from GitHub / skills CLI
+
 ```bash
 npx skills add offerclaw/agent-skills
 ```
@@ -71,6 +73,23 @@ List all available skills:
 ```bash
 npx skills add offerclaw/agent-skills --list
 ```
+
+### Install via ClawHub
+
+Install the ClawHub CLI:
+
+```bash
+npm i -g clawhub
+```
+
+Then install a published skill by slug:
+
+```bash
+clawhub install admissions-cv-writing
+clawhub install recommendation-letter-writing
+```
+
+ClawHub installs published skills into your OpenClaw workspace. This repository remains the source repo for GitHub-based installation, forking, and manual customization.
 
 ## Skill Structure
 

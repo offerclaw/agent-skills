@@ -55,6 +55,8 @@
 
 ## 安装
 
+### 通过 GitHub / skills CLI 安装
+
 安装整个仓库：
 
 ```bash
@@ -73,6 +75,23 @@ npx skills add offerclaw/agent-skills --skill recommendation-letter-writing
 ```bash
 npx skills add offerclaw/agent-skills --list
 ```
+
+### 通过 ClawHub 安装
+
+先安装 ClawHub CLI：
+
+```bash
+npm i -g clawhub
+```
+
+然后通过已发布的 skill slug 安装：
+
+```bash
+clawhub install admissions-cv-writing
+clawhub install recommendation-letter-writing
+```
+
+ClawHub 会把已发布 skill 安装到你的 OpenClaw workspace。这个仓库仍然作为 GitHub 安装、Fork 和手动定制时的源仓库。
 
 ## 仓库结构
 

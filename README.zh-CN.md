@@ -87,7 +87,7 @@ npm i -g clawhub
 然后通过已发布的 skill slug 安装：
 
 ```bash
-clawhub install admissions-cv-writing
+clawhub install offerclaw-cv-writing
 clawhub install recommendation-letter-writing
 ```
 

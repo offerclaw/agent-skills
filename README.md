@@ -85,7 +85,7 @@ npm i -g clawhub
 Then install a published skill by slug:
 
 ```bash
-clawhub install admissions-cv-writing
+clawhub install offerclaw-cv-writing
 clawhub install recommendation-letter-writing
 ```
 

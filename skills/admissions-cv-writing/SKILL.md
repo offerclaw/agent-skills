@@ -1,9 +1,9 @@
 ---
 name: admissions-cv-writing
-description: "Writes academic CVs and resumes for graduate school applications (master's, PhD, study abroad) from OfferClaw. Covers education, research, internships, publications, and awards. Supports PDF export. Use when asked to create, rewrite, polish, or tailor an admissions CV or resume for university application."
+description: "Writes graduate admissions CVs and resumes for master's, PhD, and study abroad applications from OfferClaw. Covers education, research, internships, publications, and awards. Supports PDF export. Use when asked to create, rewrite, polish, or tailor an admissions CV or resume for university application."
 ---
 
-# Admissions CV Writing
+# Admissions CV / Resume Writing
 
 ## Use When
 
